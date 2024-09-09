@@ -20,9 +20,9 @@ precoPorHora = Convert.ToDecimal(Console.ReadLine());
 Estacionamento es = new Estacionamento(precoIncial, precoPorHora);
 
 string opcao = string.Empty;
-bool exibir.Menu = true;
+bool exibirMenu = true;
 
-while (exibir.Menu)
+while (exibirMenu)
 {
     Console.Clear();
     Console.WriteLine("Digite a sua opção:");
@@ -46,7 +46,7 @@ while (exibir.Menu)
             break;
 
         case "4":
-            exibir.Menu = false;
+            exibirMenu = false;
             break;
 
         default:

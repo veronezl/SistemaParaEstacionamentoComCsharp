@@ -2,7 +2,7 @@ namespace SistemaParaEstacionamentoComCsharp.models
 {
     public class Estacionamento
     {
-         private decimal precoInicial = 0;
+        private decimal precoInicial = 0;
         private decimal precoPorHora = 0;
         private List<string> veiculos = new List<string>();
 
@@ -17,6 +17,10 @@ namespace SistemaParaEstacionamentoComCsharp.models
             // TODO: Pedir para o usuário digitar uma placa (ReadLine) e adicionar na lista "veiculos"
             // *IMPLEMENTE AQUI*
             Console.WriteLine("Digite a placa do veículo para estacionar:");
+            string placa = Console.ReadLine();
+
+            // Adicionado a placa digitada à lista de veiculos
+            veiculos.Add(placa);
         }
 
         public void RemoverVeiculo()
@@ -26,17 +30,26 @@ namespace SistemaParaEstacionamentoComCsharp.models
             // Pedir para o usuário digitar a placa e armazenar na variável placa
             // *IMPLEMENTE AQUI*
             string placa = "";
+            placa = Console.ReadLine();
+            bool removido = veiculos.Remove(placa);
 
             // Verifica se o veículo existe
             if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
             {
                 Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
-
+                string horasInput = Console.ReadLine();
                 // TODO: Pedir para o usuário digitar a quantidade de horas que o veículo permaneceu estacionado,
                 // TODO: Realizar o seguinte cálculo: "precoInicial + precoPorHora * horas" para a variável valorTotal                
                 // *IMPLEMENTE AQUI*
                 int horas = 0;
                 decimal valorTotal = 0; 
+
+                if (int.TryParse(horasInput, out horas))
+                {
+                    valorTotal = precoInicial + precoPorHora * horas;
+
+                    veiculos.Remove(veiculos.First(x => x.ToUpper() == placa.ToUpper()));
+                }
 
                 // TODO: Remover a placa digitada da lista de veículos
                 // *IMPLEMENTE AQUI*
@@ -57,6 +70,10 @@ namespace SistemaParaEstacionamentoComCsharp.models
                 Console.WriteLine("Os veículos estacionados são:");
                 // TODO: Realizar um laço de repetição, exibindo os veículos estacionados
                 // *IMPLEMENTE AQUI*
+                foreach (var veiculo in veiculos)
+                {
+                    Console.WriteLine(veiculo);
+                }
             }
             else
             {
